@@ -36,7 +36,7 @@
     margin: 0 auto;
     margin-top: 10px;
 }
-.type {
+.type, .type-details {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,11 +46,14 @@
     font-size:var(--type-text);
     color: white;
     text-transform: uppercase;
-    margin-left: 5px;
     
 }
 
-.type p {
+.type-details {
+    margin: 0 auto;
+}
+
+.type p, .type-details p {
     margin: 0;
 }
 
