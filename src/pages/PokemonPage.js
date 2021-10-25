@@ -7,13 +7,14 @@ import Loader from "../components/Loader"
 const PokemonPage = ({ match }) => {
 
     const id = match.params.id
+
     const[pokemonDetails, setPokemonDetails] = useState()
     const[loading, setLoading] = useState(true)
 
     const getPokemon = async (id) => {
         const details = await getPokemonData(id)
         setPokemonDetails(details.data)
-        setLoading(false);
+        setLoading(false)
 
     }
 
@@ -41,25 +42,39 @@ const PokemonPage = ({ match }) => {
                         >
                             <h1>#{pokemonDetails.id} {pokemonDetails.name.charAt(0).toUpperCase() + pokemonDetails.name.slice(1)}</h1>
                             
-                            <div className="type-container">
+                            <div className="type-container" style={{marginBottom: '10px'}}>
                                 {pokemonDetails.types.map(t => (
                                     <div key={t.type.name} className={`type ${t.type.name}`}>
                                         <p>{t.type.name}</p>
                                     </div>
                                 ))}
                             </div>
-                            <Card.Img 
-                                style={{width: '15rem', margin:'0 auto'}}
-                                src={pokemonDetails.sprites.front_default}
-                                variant="top"
-                            />
 
-                            <Card.Body>
-                                <h3>Variants</h3>
-                                
-                            </Card.Body>
+                            <Row>
+                                <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+                                <h3>Normal Version</h3>
+                                    <Card.Img 
+                                        style={{width: '15rem', margin:'0 auto'}}
+                                        src={pokemonDetails.sprites.front_default}
+                                        variant="top"
+                                    />
+                                </Col>
+                                <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+                                    <h3>Shiny Version</h3>
+                                    <Card.Img 
+                                        style={{width: '15rem', margin:'0 auto'}} 
+                                        src={pokemonDetails.sprites.front_shiny}
 
+                                    />
+                                </Col>
+                                <Card style={{border:'none'}}>
+                                    <h3>Abilities</h3>
+                                    {pokemonDetails.abilities.map(a => (
+                                        <p>{a.ability.name}</p>
 
+                                    ))}
+                                </Card>
+                            </Row>
                         </Card>
                     </Col>
                 </Row>
