@@ -1,0 +1,113 @@
+#root{
+    --normal-type: #A8A77A;
+    --fire-type:  #EE8130;
+    --water-type:  #6390F0;
+    --electric-type:  #F7D02C;
+    --grass-type:  #7AC74C;
+    --ice-type:  #96D9D6;
+    --fighting-type:  #C22E28;
+    --poison-type:  #A33EA1;
+    --ground-type:  #E2BF65;
+    --flying-type:  #A98FF3;
+    --psychic-type:  #F95587;
+    --bug-type:  #A6B91A;
+    --rock-type:  #B6A136;
+    --ghost-type:  #735797;
+    --dragon-type:  #6F35FC;
+    --dark-type:  #705746;
+    --steel-type:  #B7B7CE;
+    --fairy-type:  #D685AD;
+
+    --h1-default: 1.2em;
+    --type-text: 0.6em;
+}
+
+.pokemon-name {
+    font-size: var(--h1-default);
+    color: black;
+}
+
+.pokemon-name:hover {
+    color: grey;
+    transition: ease all 0.3s
+}
+.type-container {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.type {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    height:20px;
+    width: 50px;
+    font-size:var(--type-text);
+    color: white;
+    text-transform: uppercase;
+    margin-left: 5px;
+    
+}
+
+.type p {
+    margin: 0;
+}
+
+.normal {
+    background-color: var(--normal-type);
+}
+
+.fire {
+    background-color: var(--fire-type);
+}
+
+.water {
+    background-color: var(--water-type);
+}
+
+.electric {
+    background-color: var(--electric-type);
+}
+.grass {
+    background-color: var(--grass-type);
+}
+.ice {
+    background-color: var(--ice-type);
+}
+.fighting {
+    background-color: var(--fighting-type);
+}
+.poison {
+    background-color: var(--poison-type);
+}
+.ground {
+    background-color: var(--ground-type);
+}
+.flying {
+    background-color: var(--flying-type);
+}
+.psychic {
+    background-color: var(--psychic-type);
+}
+.bug {
+    background-color: var(--bug-type);
+}
+.rock {
+    background-color: var(--rock-type);
+}
+.ghost {
+    background-color: var(--ghost-type);
+}
+.dragon {
+    background-color: var(--dragon-type);
+}
+.dark {
+    background-color: var(--dark-type);
+}
+.steel {
+    background-color: var(--steel-type);
+}
+.fairy {
+    background-color: var(--fairy-type);
+}
