@@ -11,7 +11,6 @@ const App = () => {
         <Container>
         <Route exact path='/' component={Homepage}/>
         <Route path = '/pokemon/:id' component = {PokemonPage}/>
-
         </Container>
       </Router>
   );

@@ -13,10 +13,9 @@ const Homepage = () => {
   useEffect(()=> {
       const getPokemonList = async () => {
         let pokemonArray = []
-        for(let i = 1; i <= 300; i++){
+        for(let i = 1; i <= 151; i++){
             pokemonArray.push(await getPokemonData(i))
         }
-        console.log(pokemonArray)
         setPokemon(pokemonArray)
         setLoading(false)
     

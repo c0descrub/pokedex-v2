@@ -1,7 +1,6 @@
 import axios from "axios"
 import { useState, useEffect } from 'react'
 import { Card, Row, Col } from 'react-bootstrap'
-import { Link } from "react-router-dom"
 import Loader from "../components/Loader"
 
 const PokemonPage = ({ match }) => {
@@ -9,25 +8,39 @@ const PokemonPage = ({ match }) => {
     const id = match.params.id
 
     const[pokemonDetails, setPokemonDetails] = useState()
+    const[speciesData, setSpeciesData] = useState()
     const[loading, setLoading] = useState(true)
 
-    const getPokemon = async (id) => {
-        const details = await getPokemonData(id)
-        setPokemonDetails(details.data)
-        setLoading(false)
-
-    }
-
-    const getPokemonData = async (id) => {
-        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        return res
-    };
-
-    
     useEffect(() => {
-         getPokemon(id)
+        const getPokemon = async (id) => {
+            const details = await getPokemonData(id)
+            
+            setPokemonDetails(details.data)
+            setLoading(false)
+    
+        }
 
-    },[])
+        const getSpecies = async (id) => {
+            const species = await getSpeciesData(id)
+            setSpeciesData(species.data)
+        }
+
+        const getPokemonData = async (id) => {
+            const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+            return res
+        };
+
+        const getSpeciesData = async (id) => {
+            const re = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
+            return re
+        }
+        
+         getPokemon(id)
+         getSpecies(id)
+
+    },[id])
+
+    console.log(speciesData)
 
     return (
         <>
@@ -67,13 +80,26 @@ const PokemonPage = ({ match }) => {
 
                                     />
                                 </Col>
-                                <Card style={{border:'none'}}>
-                                    <h3>Abilities</h3>
-                                    {pokemonDetails.abilities.map(a => (
-                                        <p>{a.ability.name}</p>
 
+                                {speciesData.flavor_text_entries.map(f => (
+                                    <p>{f.flavor_text}</p>
+                                ))}
+
+                                  
+                                <Row>
+                                <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+                                <Card style={{border: "none"}}>
+                                    <h3>Stats</h3>
+                                    {pokemonDetails.stats.map(s => (
+                                        <div className="stats-container" key ={s.stat.name}>
+                                            <p className="stats-stat-name">{s.stat.name.toUpperCase()}</p>
+                                            <div className="stats-stat-max"><div className="stats-stat-level" style={{width: s.base_stat}}>{s.base_stat}</div></div>
+
+                                        </div>
                                     ))}
                                 </Card>
+                                </Col>
+                                </Row>
                             </Row>
                         </Card>
                     </Col>

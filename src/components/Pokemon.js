@@ -6,7 +6,7 @@ const Pokemon = ({pokemon}) => {
         <>
             <Card 
                 className="my-3 p-3 h-250 rounded text-center shadow mb-5 bg-white"
-                style={{minHeight: '250px', border: 'none'}}
+                style={{border: 'none'}}
             >
                 <Link 
                     to={`/pokemon/${pokemon.id}`}

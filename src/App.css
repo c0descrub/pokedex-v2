@@ -57,6 +57,29 @@
     margin: 0;
 }
 
+.stats-stat-name{
+    margin: 0;
+
+}
+
+.stats-stat-level {
+    background-color: var(--water-type);
+    color: white;
+    text-align: right;
+    min-width: 25px;
+    padding-right: 5px;
+}
+
+.stats-stat-max {
+    width: 255px;
+    background-color: rgb(212, 212, 212);
+}
+
+.stats-container {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
 .normal {
     background-color: var(--normal-type);
 }
