@@ -3,6 +3,7 @@ import { Row, Col } from 'react-bootstrap'
 import axios from 'axios'
 import Pokemon from '../components/Pokemon'
 import Loader from '../components/Loader'
+import PokemonPage from './PokemonPage'
 
 const Homepage = () => {
   
@@ -30,8 +31,7 @@ const Homepage = () => {
 
     return (
         <>
-        {loading ? (<Loader/>) : (<Row>{pokemon.map(p =>(<Col xs={12} sm={12} md={6} lg={2} xl={2} key = {p.data.name}> <Pokemon pokemon = {p.data} /> </Col>))}</Row>)
-        }
+        {loading ? (<Loader/>) : (<Row>{pokemon.map(p =>(<Col xs={12} sm={12} md={6} lg={4} xl={4} key = {p.data.name}> <Pokemon pokemon = {p.data} /> </Col>))}</Row>)}
         </>
     )
 }
