@@ -3,46 +3,41 @@ import { useState, useEffect } from 'react'
 import { Row } from 'react-bootstrap'
 import Loader from "../components/Loader"
 
+const getPokemonData = (id) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const details = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+        const species = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
+        resolve({
+          details,
+          species,
+        });
+      } catch (e) {
+        reject(e);
+      }
+    });
+  };
+
 const PokemonPage = ({ match }) => {
-
-    const id = match.params.id
-
-    const[pokemonDetails, setPokemonDetails] = useState()
-    const[speciesData, setSpeciesData] = useState()
-    const[loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        const getPokemon = async (id) => {
-            const details = await getPokemonData(id)
-            
-            setPokemonDetails(details.data)
-            setLoading(false)
     
-        }
-
-        const getSpecies = async (id) => {
-            const species = await getSpeciesData(id)
-            setSpeciesData(species.data)
-        }
-
-        const getPokemonData = async (id) => {
-            const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-            return res
-        };
-
-        const getSpeciesData = async (id) => {
-            const re = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
-            return re
-        }
-        
-         getPokemon(id)
-         getSpecies(id)
-
-    },[id])
-
-    console.log(speciesData)
-
-    return (
+    const id = match.params.id;
+  
+    const [pokemonDetails, setPokemonDetails] = useState();
+    const [speciesData, setSpeciesData] = useState();
+    const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+      setLoading(true);
+      getPokemonData(id).then((res) => {
+        setPokemonDetails(res.details.data);
+        setSpeciesData(res.species.data);
+        setLoading(false);
+      });
+    }, [id]);
+  
+    console.log(speciesData);
+  
+    return  (
         <>
             {loading ? (
             <Loader/>
@@ -50,20 +45,20 @@ const PokemonPage = ({ match }) => {
                 <>
                     <Row>
                         <div className={`pokemon-page-header background-${pokemonDetails.types[0].type.name}`}>
-                            <img className="pokemon-page-header__image pokemon-image"src={pokemonDetails.sprites.other["official-artwork"].front_default} alt={pokemonDetails.name} />
-
-                            
                             <div className="pokemon-page-header__details">
-                                <h3 className="pokemon-page-header__id pokemon-id">#{pokemonDetails.id}</h3>
-                                    <h1 className="pokemon-page-header__name pokemon-name">{pokemonDetails.name.charAt(0).toUpperCase() + pokemonDetails.name.slice(1)}</h1>
-                                        <div className="type-container">
-                                            {pokemonDetails.types.map(t => (
-                                                <div key={t.type.name} className={`homepage-pokemon-card__type ${t.type.name}`}>
-                                                <img alt={`${t.type.name} type icon`} src={`/img/svg/${t.type.name}.svg`} className="type-icon" />
-                                                    <p>{t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1)}</p>
-                                                </div>
-                                            ))}
-                                        </div>
+                                <img className="pokemon-page-header__image pokemon-image"src={pokemonDetails.sprites.other["official-artwork"].front_default} alt={pokemonDetails.name} />
+                                    <div className="type-name-container">
+                                    <h3 className="pokemon-page-header__id pokemon-id">#{pokemonDetails.id}</h3>
+                                        <h1 className="pokemon-page-header__name pokemon-name">{pokemonDetails.name.charAt(0).toUpperCase() + pokemonDetails.name.slice(1)}</h1>
+                                            <div className="type-container">
+                                                {pokemonDetails.types.map(t => (
+                                                    <div key={t.type.name} className={`homepage-pokemon-card__type ${t.type.name}`}>
+                                                    <img alt={`${t.type.name} type icon`} src={`/img/svg/${t.type.name}.svg`} className="type-icon" />
+                                                        <p>{t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1)}</p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                    </div>       
                             </div>
                             
                             
@@ -84,7 +79,44 @@ const PokemonPage = ({ match }) => {
                 </>
             ) }
         </>
-    )
-}
+    );
+};
+    
+export default PokemonPage 
+     
 
-export default PokemonPage
+    // useEffect(() => {
+    //     const getPokemon = async (id) => {
+    //         const details = await getPokemonData(id)
+            
+    //         setPokemonDetails(details.data)
+    //         setLoading(false)
+    
+    //     }
+
+    //     const getSpecies = async (id) => {
+    //         const species = await getSpeciesData(id)
+    //         setSpeciesData(species.data)
+    //     }
+
+    //     const getPokemonData = async (id) => {
+    //         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    //         return res
+    //     };
+
+    //     const getSpeciesData = async (id) => {
+    //         const re = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
+    //         return re
+    //     }
+        
+    //      getPokemon(id)
+    //      getSpecies(id)
+
+    // },[id])
+
+//     console.log(speciesData)
+
+    
+// }
+
+
