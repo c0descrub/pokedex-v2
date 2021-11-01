@@ -8,9 +8,11 @@ const getPokemonData = (id) => {
       try {
         const details = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
         const species = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
+        const evolution = await axios.get(`https://pokeapi.co/api/v2/evolution-chain/${id}`)
         resolve({
           details,
           species,
+          evolution,
         });
       } catch (e) {
         reject(e);
@@ -18,12 +20,17 @@ const getPokemonData = (id) => {
     });
   };
 
+
+
 const PokemonPage = ({ match }) => {
+    
     
     const id = match.params.id;
   
     const [pokemonDetails, setPokemonDetails] = useState();
     const [speciesData, setSpeciesData] = useState();
+    const [evolutionData, setEvoloutionData] = useState();
+    const [weaknessData, setWeaknessData] = useState();
     const [loading, setLoading] = useState(true);
     const [toggleState, setToggleState] = useState(1);
 
@@ -68,15 +75,28 @@ const PokemonPage = ({ match }) => {
     setToggleState(index)
 
     }
+
+    
   
     useEffect(() => {
       setLoading(true);
       getPokemonData(id).then((res) => {
         setPokemonDetails(res.details.data);
         setSpeciesData(res.species.data);
+        setEvoloutionData(res.evolution.data);
         setLoading(false);
       });
     }, [id]);
+
+    const heightConversion = () => {
+        let a = pokemonDetails.height*10/30.48
+        return(<p className="species-data" style={{fontSize:'14px', marginLeft:'5px'}}>({a.toFixed(2) + "ft"})</p>)
+    }
+
+    const weightConversion = () => {
+        let b = pokemonDetails.weight/10*2.2
+        return(<p className="species-data" style={{fontSize:'14px', marginLeft:'5px'}}>({b.toFixed(0) + "lbs"})</p>)
+    }
 
     return  (
         <>
@@ -125,10 +145,54 @@ const PokemonPage = ({ match }) => {
                     </Row>
 
                         <Row>
-
                             <div id="tab-1" className="tab-content current-tab">            
                                 <p className="tab-content-text">{speciesData.flavor_text_entries["15"].flavor_text}</p>
-                                <h2 className={`${pokemonDetails.types[0].type.name}-text`}>Pokédex Data</h2>
+                                <h2 className={`${pokemonDetails.types[0].type.name}-text`}>Pokédex Data</h2> 
+                                    <div className="pokedex-data-container">
+                                        <div>
+                                            <h3 className="species-data-title">Genus:</h3>
+                                        </div>
+                                        <div>
+                                            <p className="species-data">{speciesData.genera["7"].genus}</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="pokedex-data-container">
+                                        <div>
+                                            <h3 className="species-data-title">Height:</h3> 
+                                        </div>
+                                        <div>
+                                            <p className="species-data">{pokemonDetails.height*10 + "cm"}</p>
+                                        </div>
+                                        <div>
+                                        {heightConversion()}
+                                        </div>
+                                    </div>
+
+                                    <div className="pokedex-data-container">
+                                        <div>
+                                            <h3 className="species-data-title">Weight:</h3> 
+                                        </div>
+                                        <div>
+                                            <p className="species-data">{pokemonDetails.weight/10 + "kg"}</p>
+                                        </div>
+                                        <div>
+                                        {weightConversion()}
+                                        </div>
+                                    </div>
+
+                                    <div className="pokedex-data-container">
+                                        <div>
+                                            <h3 className="species-data-title">Abilities:</h3> 
+                                        </div>
+                                        <div>
+                                        {pokemonDetails.abilities.map(a => (
+                                            <div>
+                                                <p className="species-data">{a.ability.name.charAt(0).toUpperCase() + a.ability.name.slice(1)}</p>
+                                            </div>
+                                        ))}
+                                        </div>
+                                    </div>
                             </div>
 
                                 <div id="tab-2" className="tab-content tab" onClick={() => toggleTab(1)}> 
@@ -150,6 +214,8 @@ const PokemonPage = ({ match }) => {
         </>
     );
 };
+
+
     
 export default PokemonPage
 

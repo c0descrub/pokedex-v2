@@ -275,9 +275,27 @@ body {
 .tab-content h2 {
     font-size: var(--description);
     font-weight: var(--application-title-weight);
-    margin-top: 15px;
+    margin-top: 30px;
+    margin-bottom: 15px;
 }
 
+.species-data-title {
+    font-size: var(--description);
+    font-weight: var(--title-weight);
+    color: var(--text-black);
+    margin-bottom: 0px;
+    width: 80px;
+}
+
+.species-data {
+    color: var(--text-grey);
+}
+
+.pokedex-data-container {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 15px;
+}
 
 
 
