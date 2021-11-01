@@ -160,7 +160,7 @@ body {
 }
 
 .pokemon-page-header{
-    z-index: 1
+    z-index: 1;
 }
 
 .type-icon {
@@ -170,8 +170,8 @@ body {
 .pokemon-page-header__details {
     display: flex;
     margin: 0 auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 50px;
+    margin-bottom: 80px;
 }
 
 .header-background-text__container {
@@ -211,6 +211,83 @@ body {
     text-align: left;
     margin-bottom: 10px;
 }
+
+.pokemon-page-tab__container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: -35px;
+    z-index: 5;
+}
+
+
+.pokemon-page-tab h1 {
+    font-size: var(--filter-title);
+    font-weight: var(--filter-title-weight);
+    text-align: center;
+    color: var(--text-white);
+}
+
+
+.tab {
+    display: none;
+
+}
+
+.current-tab {
+    display: block;
+}
+
+.about-tab-marker, .stats-tab-marker, .evo-tab-marker {
+    height: 5px;
+    width: 5px;
+    border-radius: 5px;
+    background-color: white;
+    margin-top: -5px;
+
+}
+
+.hidden {
+    display: none;
+}
+
+.about-tab-marker {
+    margin-left: 22px;
+}
+
+.stats-tab-marker {
+    margin-left: 17px;
+}
+
+.evo-tab-marker {
+    margin-left: 30px;
+}
+
+.tab-content {
+    padding: 30px;
+}
+
+.tab-content p{
+    font-size: var(--description);
+    font-weight: var(--description-weight);
+    margin: 0 auto;
+}
+
+.tab-content h2 {
+    font-size: var(--description);
+    font-weight: var(--application-title-weight);
+    margin-top: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 .normal {
@@ -271,6 +348,8 @@ body {
     background-color: var(--fairy-type);
 }
 
+
+
 .background-normal {
     background-color: var(--background-normal-type);
 }
@@ -327,4 +406,63 @@ body {
 }
 .background-fairy {
     background-color: var(--background-fairy-type);
+}
+
+
+.normal-text {
+    color: var(--normal-type);
+}
+
+.fire-text {
+    color: var(--fire-type);
+}
+
+.water-text {
+    color: var(--water-type);
+}
+
+.electric-text {
+    color: var(--electric-type);
+}
+.grass-text {
+    color: var(--grass-type);
+}
+.ice-text {
+    color: var(--ice-type);
+}
+.fighting-text {
+    color: var(--fighting-type);
+}
+.poison-text {
+    color: var(--poison-type);
+}
+.ground-text {
+    color: var(--ground-type);
+}
+.flying-text {
+    color: var(--flying-type);
+}
+.psychic-text {
+    color: var(--psychic-type);
+}
+.bug-text {
+    color: var(--bug-type);
+}
+.rock-text {
+    color: var(--rock-type);
+}
+.ghost-text {
+    color: var(--ghost-type);
+}
+.dragon-text {
+    color: var(--dragon-type);
+}
+.dark-text {
+    color: var(--dark-type);
+}
+.steel-text {
+    color: var(--steel-type);
+}
+.fairy-text {
+    color: var(--fairy-type);
 }

@@ -19,6 +19,7 @@ const Pokemon = ({pokemon}) => {
                         ))}
                     </div>
                 </div>
+                
                     <img className="homepage-pokemon-card__image pokemon-image" alt={pokemon.name} src={pokemon.sprites.other["official-artwork"].front_default}/>
                     
             </div>

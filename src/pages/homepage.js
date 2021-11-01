@@ -3,7 +3,6 @@ import { Row, Col } from 'react-bootstrap'
 import axios from 'axios'
 import Pokemon from '../components/Pokemon'
 import Loader from '../components/Loader'
-import PokemonPage from './PokemonPage'
 
 const Homepage = () => {
   
