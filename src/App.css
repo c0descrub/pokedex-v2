@@ -1,63 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
 
-#root{
-
+#root {
     /* Types */
-    --normal-type: #9DA0AA;
-    --fire-type:  #FD7D24;
-    --water-type:  #4A90DA;
-    --electric-type:  #EED535;
-    --grass-type:  #62B957;
-    --ice-type:  #61CEC0;
-    --fighting-type:  #D04164;
-    --poison-type:  #A552CC;
-    --ground-type:  #DD7748;
-    --flying-type:  #748FC9;
-    --psychic-type:  #EA5D60;
-    --bug-type:   #8CB230;
-    --rock-type:  #BAAB82;
-    --ghost-type:  #556AAE;
-    --dragon-type:  #0F6AC0;
-    --dark-type:  #58575F;
-    --steel-type:  #417D9A;
-    --fairy-type:  #ED6EC7;
+    --normal-type: #9da0aa;
+    --fire-type: #fd7d24;
+    --water-type: #4a90da;
+    --electric-type: #eed535;
+    --grass-type: #62b957;
+    --ice-type: #61cec0;
+    --fighting-type: #d04164;
+    --poison-type: #a552cc;
+    --ground-type: #dd7748;
+    --flying-type: #748fc9;
+    --psychic-type: #ea5d60;
+    --bug-type: #8cb230;
+    --rock-type: #baab82;
+    --ghost-type: #556aae;
+    --dragon-type: #0f6ac0;
+    --dark-type: #58575f;
+    --steel-type: #417d9a;
+    --fairy-type: #ed6ec7;
 
     /* Type backgrounds */
-    --background-normal-type: #B5B9C4;
-    --background-fire-type:  #FFA756;
-    --background-water-type:  #58ABF6;
-    --background-electric-type:  #F2CB55;
-    --background-grass-type:  #8BBE8A;
-    --background-ice-type:  #91D8DF;
-    --background-fighting-type:  #EB4971;
-    --background-poison-type:  #9F6E97;
-    --background-ground-type:  #F78551;
-    --background-flying-type:  #83A2E3;
-    --background-psychic-type:  #FF6568;
-    --background-bug-type:   #8BD674;
-    --background-rock-type:  #D4C294;
-    --background-ghost-type:  #8571BE;
-    --background-dragon-type:  #7383B9;
-    --background-dark-type:  #6F6E78;
-    --background-steel-type:  #4C91B2;
-    --background-fairy-type:  #EBA8C3;
+    --background-normal-type: #b5b9c4;
+    --background-fire-type: #ffa756;
+    --background-water-type: #58abf6;
+    --background-electric-type: #f2cb55;
+    --background-grass-type: #8bbe8a;
+    --background-ice-type: #91d8df;
+    --background-fighting-type: #eb4971;
+    --background-poison-type: #9f6e97;
+    --background-ground-type: #f78551;
+    --background-flying-type: #83a2e3;
+    --background-psychic-type: #ff6568;
+    --background-bug-type: #8bd674;
+    --background-rock-type: #d4c294;
+    --background-ghost-type: #8571be;
+    --background-dragon-type: #7383b9;
+    --background-dark-type: #6f6e78;
+    --background-steel-type: #4c91b2;
+    --background-fairy-type: #eba8c3;
 
     /* Backgrounds */
-    --background-white: #FFFFFF;
-    --background-default-input: #F2F2F2;
-    --background-pressed-input: #E2E2E2;
+    --background-white: #ffffff;
+    --background-default-input: #f2f2f2;
+    --background-pressed-input: #e2e2e2;
     --background-modal: rgba(0, 0, 0, 0.25);
 
     /* Gradients */
-    --gradient-vector: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
-    --gradient-vector-grey: linear-gradient(100.59deg, #E5E5E5 0%, rgba(245, 245, 245, 0) 100%);
-    --gradient-vector-white: linear-gradient(100.84deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+    --gradient-vector: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    --gradient-vector-grey: linear-gradient(100.59deg, #e5e5e5 0%, rgba(245, 245, 245, 0) 100%);
+    --gradient-vector-white: linear-gradient(
+        100.84deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
 
-    --gradient-pokeball: linear-gradient(180deg, #F5F5F5 50%, #FFFFFF 94.81%);
-    --gradient-pokeball-grey: linear-gradient(135deg, #ECECEC 0%, #F5F5F5 100%);
-    --gradient-pokeball-white: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
-    --gradient-pokemon-name: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 76.04%);
-    --gradient-pokemon-circle: linear-gradient(334.58deg, rgba(255, 255, 255, 0.35) 16.24%, rgba(255, 255, 255, 0) 44.6%);
+    --gradient-pokeball: linear-gradient(180deg, #f5f5f5 50%, #ffffff 94.81%);
+    --gradient-pokeball-grey: linear-gradient(135deg, #ececec 0%, #f5f5f5 100%);
+    --gradient-pokeball-white: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    --gradient-pokemon-name: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0) 76.04%
+    );
+    --gradient-pokemon-circle: linear-gradient(
+        334.58deg,
+        rgba(255, 255, 255, 0.35) 16.24%,
+        rgba(255, 255, 255, 0) 44.6%
+    );
 
     /* Typeography */
     --title: 100px;
@@ -73,10 +92,10 @@
     --pokemon-number: 16px;
     --pokemon-number-weight: 700;
     --pokemon-type: 12px;
-     --pokemon-type-weight: 500;
+    --pokemon-type-weight: 500;
 
-    --text-white: #FFFFFF;
-    --text-black: #17171B;
+    --text-white: #ffffff;
+    --text-black: #17171b;
     --text-grey: #747476;
     --text-number: rgba(23, 23, 27, 0.6);
 }
@@ -110,7 +129,7 @@ body {
     flex-direction: row;
     border-radius: 5px;
     padding-left: 20px;
-    background-image:url("png/6x3.svg"), url(png/pokeball.svg);
+    background-image: url('png/6x3.svg'), url(png/pokeball.svg);
     background-repeat: no-repeat, no-repeat;
     background-size: 72px, 145px;
     background-position-x: 94px, 270px;
@@ -118,22 +137,19 @@ body {
 
 .homepage-pokemon-card__image {
     margin-left: 30px;
-
 }
 .homepage-pokemon-card__id {
-    color: #17171B99;
+    color: #17171b99;
     font-size: var(--pokemon-number);
     font-weight: var(--pokemon-number-weight);
-    
+
     padding-top: 20px;
 }
 
 .homepage-pokemon-card__name {
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: var(--pokemon-name);
     font-weight: var(--pokemon-name-weight);
-    
-
 }
 
 .homepage-pokemon-card__type {
@@ -146,20 +162,20 @@ body {
     justify-content: space-evenly;
     color: var(--text-white);
     margin-right: 5px;
-    
 }
 
-.homepage-pokemon-card__type p, .type-icon  {
+.homepage-pokemon-card__type p,
+.type-icon {
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.type-container, .pokemon-page-header {
+.type-container,
+.pokemon-page-header {
     display: flex;
-
 }
 
-.pokemon-page-header{
+.pokemon-page-header {
     z-index: 1;
 }
 
@@ -175,10 +191,10 @@ body {
 }
 
 .header-background-text__container {
-    z-index:-1
+    z-index: -1;
 }
 
-.header-background-text{
+.header-background-text {
     font-size: var(--title);
     font-weight: var(--title-weight);
     opacity: 50%;
@@ -188,10 +204,8 @@ body {
     margin-top: 25px;
 }
 
-
-.stats-stat-name{
+.stats-stat-name {
     margin: 0;
-
 }
 
 .stats-stat-level {
@@ -219,7 +233,6 @@ body {
     z-index: 5;
 }
 
-
 .pokemon-page-tab h1 {
     font-size: var(--filter-title);
     font-weight: var(--filter-title-weight);
@@ -227,23 +240,22 @@ body {
     color: var(--text-white);
 }
 
-
 .tab {
     display: none;
-
 }
 
 .current-tab {
     display: block;
 }
 
-.about-tab-marker, .stats-tab-marker, .evo-tab-marker {
+.about-tab-marker,
+.stats-tab-marker,
+.evo-tab-marker {
     height: 5px;
     width: 5px;
     border-radius: 5px;
     background-color: white;
     margin-top: -5px;
-
 }
 
 .hidden {
@@ -266,7 +278,7 @@ body {
     padding: 30px;
 }
 
-.tab-content p{
+.tab-content p {
     font-size: var(--description);
     font-weight: var(--description-weight);
     margin: 0 auto;
@@ -296,17 +308,6 @@ body {
     align-items: baseline;
     margin-bottom: 15px;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 .normal {
     background-color: var(--normal-type);
@@ -366,8 +367,6 @@ body {
     background-color: var(--fairy-type);
 }
 
-
-
 .background-normal {
     background-color: var(--background-normal-type);
 }
@@ -425,7 +424,6 @@ body {
 .background-fairy {
     background-color: var(--background-fairy-type);
 }
-
 
 .normal-text {
     color: var(--normal-type);
