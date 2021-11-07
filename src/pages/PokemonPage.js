@@ -9,6 +9,7 @@ const getPokemonData = (id) => {
             const details = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
             const species = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
             const evolution = await axios.get(`https://pokeapi.co/api/v2/evolution-chain/${id}`)
+
             resolve({
                 details,
                 species,
@@ -19,6 +20,8 @@ const getPokemonData = (id) => {
         }
     })
 }
+
+
 
 const PokemonPage = ({ match }) => {
     const id = match.params.id
@@ -77,7 +80,7 @@ const PokemonPage = ({ match }) => {
             setSpeciesData(res.species.data)
             setEvoloutionData(res.evolution.data)
             setLoading(false)
-        })
+        })   
     }, [id])
 
     const heightConversion = () => {
@@ -110,13 +113,6 @@ const PokemonPage = ({ match }) => {
         return total
     }
 
-    const hp = () => {
-        let hp = pokemonDetails.stats['0'].stat.name
-        const hitpoints = hp.charAt(0).toUpperCase() + hp.slice(1)
-        
-        return hitpoints
-    }
-
     const hpEV = () => {
         return pokemonDetails.stats['0'].effort
     }
@@ -141,6 +137,13 @@ const PokemonPage = ({ match }) => {
         return pokemonDetails.stats['5'].effort
     }
 
+    const hp = () => {
+        let hp = pokemonDetails.stats['0'].stat.name
+        const hitpoints = hp.charAt(0).toUpperCase() + hp.slice(1)
+
+        return hitpoints
+    }
+
     const attack = () => {
         let attk = pokemonDetails.stats['1'].stat.name
         const attack = attk.charAt(0).toUpperCase() + attk.slice(1)
@@ -155,16 +158,26 @@ const PokemonPage = ({ match }) => {
         return defence
     }
 
-    const shortenedAttack = () => {   
+    const shortenedAttack = () => {
         let specialAttack = pokemonDetails.stats['3'].stat.name
-        const spAttack = specialAttack.charAt(0).toUpperCase() + specialAttack.charAt(1) + '.' + specialAttack.charAt(8).toUpperCase() + specialAttack.slice(9)
+        const spAttack =
+            specialAttack.charAt(0).toUpperCase() +
+            specialAttack.charAt(1) +
+            '.' +
+            specialAttack.charAt(8).toUpperCase() +
+            specialAttack.slice(9)
 
         return spAttack
     }
 
-    const shortenedDefence = () => {   
+    const shortenedDefence = () => {
         let specialDefence = pokemonDetails.stats['4'].stat.name
-        const spDefence = specialDefence.charAt(0).toUpperCase() + specialDefence.charAt(1) + '.' + specialDefence.charAt(8).toUpperCase() + specialDefence.slice(9)
+        const spDefence =
+            specialDefence.charAt(0).toUpperCase() +
+            specialDefence.charAt(1) +
+            '.' +
+            specialDefence.charAt(8).toUpperCase() +
+            specialDefence.slice(9)
 
         return spDefence
     }
@@ -176,14 +189,13 @@ const PokemonPage = ({ match }) => {
         return speed
     }
 
-
-
     return (
         <>
             {loading ? (
                 <Loader />
             ) : (
                 <>
+                
                     <Row>
                         <div
                             className={`pokemon-page-header background-${pokemonDetails.types[0].type.name}`}
@@ -295,10 +307,18 @@ const PokemonPage = ({ match }) => {
                                 <div>
                                     {pokemonDetails.abilities.map((a) => (
                                         <div>
-                                            <p className='species-data'>
-                                                {a.ability.name.charAt(0).toUpperCase() +
-                                                    a.ability.name.slice(1)}
-                                            </p>
+                                            {a.is_hidden === true ? (
+                                                <p className='hidden-ability species-data'>
+                                                    {a.ability.name.charAt(0).toUpperCase() +
+                                                        a.ability.name.slice(1) +
+                                                        ' (hidden ability)'}
+                                                </p>
+                                            ) : (
+                                                <p className='species-data'>
+                                                    {a.ability.name.charAt(0).toUpperCase() +
+                                                        a.ability.name.slice(1)}
+                                                </p>
+                                            )}
                                         </div>
                                     ))}
                                 </div>
@@ -307,47 +327,50 @@ const PokemonPage = ({ match }) => {
                                 Training
                             </h2>
                             <h3 className='species-data-title'>EV Yield</h3>
-                            <div className='pokedex-data-container'>
-                                <div className="ev-table-container">
-                                    <div className="ev-table-data">
-                                        <div>{hp()}</div>
-                                        <div>{hpEV()}</div>
+                            <div className='pokedex-data-container ev-table'>
+                                <div className='ev-table-container'>
+                                    <div className='ev-table-data'>
+                                        <div className='stat hp'>{hp()}</div>
+                                        <div className='ev'>{hpEV()}</div>
                                     </div>
 
-                                    <div className="ev-table-data">
-                                        <div>{attack()}</div>
-                                        <div>{attkEV()}</div>
-
+                                    <div className='ev-table-data'>
+                                        <div className='stat attk'>{attack()}</div>
+                                        <div className='ev'>{attkEV()}</div>
                                     </div>
 
-                                    <div className="ev-table-data">
-                                        <div>{defence()}</div>
-                                        <div>{defEV()}</div>
+                                    <div className='ev-table-data'>
+                                        <div className='stat def'>{defence()}</div>
+                                        <div className='ev'>{defEV()}</div>
                                     </div>
 
-                                    <div className="ev-table-data">
-                                        <div>{shortenedAttack()}</div>
-                                        <div>{spAttkEV()}</div>
+                                    <div className='ev-table-data'>
+                                        <div className='stat sp-attk'>{shortenedAttack()}</div>
+                                        <div className='ev'>{spAttkEV()}</div>
                                     </div>
 
-                                    <div className="ev-table-data">
-                                        <div>{shortenedDefence()}</div>
-                                        <div>{spDefEV()}</div>
+                                    <div className='ev-table-data'>
+                                        <div className='stat sp-def'>{shortenedDefence()}</div>
+                                        <div className='ev'>{spDefEV()}</div>
                                     </div>
 
-                                    <div className="ev-table-data data-last">
-                                        <div>{speed()}</div>
-                                        <div>{speedEV()}</div>
+                                    <div className='ev-table-data data-last'>
+                                        <div className='stat speed'>{speed()}</div>
+                                        <div className='ev'>{speedEV()}</div>
                                     </div>
-
-
                                 </div>
-                            </div> 
-                            
-                            <div style={{display:'block'}}>
-                                <p style={{fontWeight:'bold', fontSize:'14px', marginLeft:'10px'}}>EV Total: {evTotal()}</p>
-                            </div> 
-                            
+                            </div>
+
+                            <div style={{ display: 'block' }}>
+                                <p
+                                    style={{
+                                        fontWeight: 'bold',
+                                        fontSize: '14px',
+                                        marginLeft: '3px',
+                                    }}>
+                                    EV Total: {evTotal()}
+                                </p>
+                            </div>
                         </div>
 
                         <div id='tab-2' className='tab-content tab' onClick={() => toggleTab(1)}>

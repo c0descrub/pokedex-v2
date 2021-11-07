@@ -309,6 +309,10 @@ body {
     margin-bottom: 15px;
 }
 
+.ev-table {
+    margin-bottom: 5px;
+}
+
 .ev-table-container {
     display: flex;
     flex-direction: row;
@@ -316,28 +320,64 @@ body {
     font-weight: bold;
     margin: 0 auto;
     margin-top: 20px;
+    border: 1px solid black;
 }
 
 .ev-table-data {
-    margin-right: 15px;
     display: flex;
     flex-direction: column;
     text-align: center;
+    
+}
+
+.stat, .ev {
+    border: 1px solid black;
+    padding: 6px;
 }
 
 .data-last {
     margin-right: 0px;
 }
 
+.hidden-ability {
+    font-size: 14px !important;
+}
+
+.hp {
+    background-color: rgb(185, 56, 56);
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.attk {
+    background-color: rgb(255, 191, 73);
+}
+
+.def {
+    background-color: rgb(255, 255, 118);
+}
+
+.sp-attk {
+    background-color: rgb(197, 255, 109);
+}
+
+.sp-def {
+    background-color: rgb(57, 119, 200);
+}
+
+.speed {
+    background-color: rgb(113, 64, 160);
+}
+
 .normal {
     background-color: var(--normal-type);
 }
 
-.fire {
+.fire{
     background-color: var(--fire-type);
 }
 
-.water {
+.water{
     background-color: var(--water-type);
 }
 
