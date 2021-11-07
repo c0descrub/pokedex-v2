@@ -98,6 +98,18 @@ const PokemonPage = ({ match }) => {
         )
     }
 
+    const evTotal = () => {
+        let total =
+            pokemonDetails.stats['0'].effort +
+            pokemonDetails.stats['1'].effort +
+            pokemonDetails.stats['2'].effort +
+            pokemonDetails.stats['3'].effort +
+            pokemonDetails.stats['4'].effort +
+            pokemonDetails.stats['5'].effort
+
+        return total
+    }
+
     return (
         <>
             {loading ? (
@@ -221,6 +233,26 @@ const PokemonPage = ({ match }) => {
                                             </p>
                                         </div>
                                     ))}
+                                </div>
+                            </div>
+                            <h2 className={`${pokemonDetails.types[0].type.name}-text`}>
+                                Training
+                            </h2>
+                            <div className='pokedex-data-container'>
+                                <div>
+                                    <h3 className='species-data-title'>EV Yield</h3>
+                                </div>
+                                <div>
+                                    {pokemonDetails.stats.map((s) => (
+                                        <>
+                                            <p>
+                                                {s.stat.name.charAt(0).toUpperCase() +
+                                                    s.stat.name.slice(1)}{' '}
+                                                {s.effort}
+                                            </p>
+                                        </>
+                                    ))}
+                                    <p style={{ display: 'inline' }}>Total: {evTotal()}</p>
                                 </div>
                             </div>
                         </div>
