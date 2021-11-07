@@ -240,6 +240,10 @@ body {
     color: var(--text-white);
 }
 
+.pokemon-page-tab:hover {
+    cursor: pointer;
+}
+
 .tab {
     display: none;
 }
