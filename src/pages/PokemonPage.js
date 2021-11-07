@@ -110,6 +110,74 @@ const PokemonPage = ({ match }) => {
         return total
     }
 
+    const hp = () => {
+        let hp = pokemonDetails.stats['0'].stat.name
+        const hitpoints = hp.charAt(0).toUpperCase() + hp.slice(1)
+        
+        return hitpoints
+    }
+
+    const hpEV = () => {
+        return pokemonDetails.stats['0'].effort
+    }
+
+    const attkEV = () => {
+        return pokemonDetails.stats['1'].effort
+    }
+
+    const defEV = () => {
+        return pokemonDetails.stats['2'].effort
+    }
+
+    const spAttkEV = () => {
+        return pokemonDetails.stats['3'].effort
+    }
+
+    const spDefEV = () => {
+        return pokemonDetails.stats['4'].effort
+    }
+
+    const speedEV = () => {
+        return pokemonDetails.stats['5'].effort
+    }
+
+    const attack = () => {
+        let attk = pokemonDetails.stats['1'].stat.name
+        const attack = attk.charAt(0).toUpperCase() + attk.slice(1)
+
+        return attack
+    }
+
+    const defence = () => {
+        let def = pokemonDetails.stats['2'].stat.name
+        const defence = def.charAt(0).toUpperCase() + def.slice(1)
+
+        return defence
+    }
+
+    const shortenedAttack = () => {   
+        let specialAttack = pokemonDetails.stats['3'].stat.name
+        const spAttack = specialAttack.charAt(0).toUpperCase() + specialAttack.charAt(1) + '.' + specialAttack.charAt(8).toUpperCase() + specialAttack.slice(9)
+
+        return spAttack
+    }
+
+    const shortenedDefence = () => {   
+        let specialDefence = pokemonDetails.stats['4'].stat.name
+        const spDefence = specialDefence.charAt(0).toUpperCase() + specialDefence.charAt(1) + '.' + specialDefence.charAt(8).toUpperCase() + specialDefence.slice(9)
+
+        return spDefence
+    }
+
+    const speed = () => {
+        let spd = pokemonDetails.stats['5'].stat.name
+        const speed = spd.charAt(0).toUpperCase() + spd.slice(1)
+
+        return speed
+    }
+
+
+
     return (
         <>
             {loading ? (
@@ -238,23 +306,48 @@ const PokemonPage = ({ match }) => {
                             <h2 className={`${pokemonDetails.types[0].type.name}-text`}>
                                 Training
                             </h2>
+                            <h3 className='species-data-title'>EV Yield</h3>
                             <div className='pokedex-data-container'>
-                                <div>
-                                    <h3 className='species-data-title'>EV Yield</h3>
+                                <div className="ev-table-container">
+                                    <div className="ev-table-data">
+                                        <div>{hp()}</div>
+                                        <div>{hpEV()}</div>
+                                    </div>
+
+                                    <div className="ev-table-data">
+                                        <div>{attack()}</div>
+                                        <div>{attkEV()}</div>
+
+                                    </div>
+
+                                    <div className="ev-table-data">
+                                        <div>{defence()}</div>
+                                        <div>{defEV()}</div>
+                                    </div>
+
+                                    <div className="ev-table-data">
+                                        <div>{shortenedAttack()}</div>
+                                        <div>{spAttkEV()}</div>
+                                    </div>
+
+                                    <div className="ev-table-data">
+                                        <div>{shortenedDefence()}</div>
+                                        <div>{spDefEV()}</div>
+                                    </div>
+
+                                    <div className="ev-table-data data-last">
+                                        <div>{speed()}</div>
+                                        <div>{speedEV()}</div>
+                                    </div>
+
+
                                 </div>
-                                <div>
-                                    {pokemonDetails.stats.map((s) => (
-                                        <>
-                                            <p>
-                                                {s.stat.name.charAt(0).toUpperCase() +
-                                                    s.stat.name.slice(1)}{' '}
-                                                {s.effort}
-                                            </p>
-                                        </>
-                                    ))}
-                                    <p style={{ display: 'inline' }}>Total: {evTotal()}</p>
-                                </div>
-                            </div>
+                            </div> 
+                            
+                            <div style={{display:'block'}}>
+                                <p style={{fontWeight:'bold', fontSize:'14px', marginLeft:'10px'}}>EV Total: {evTotal()}</p>
+                            </div> 
+                            
                         </div>
 
                         <div id='tab-2' className='tab-content tab' onClick={() => toggleTab(1)}>

@@ -309,6 +309,26 @@ body {
     margin-bottom: 15px;
 }
 
+.ev-table-container {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.ev-table-data {
+    margin-right: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.data-last {
+    margin-right: 0px;
+}
+
 .normal {
     background-color: var(--normal-type);
 }
