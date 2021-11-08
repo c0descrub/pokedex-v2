@@ -190,33 +190,33 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
             <div className='pokedex-data-container ev-table'>
                 <div className='ev-table-container'>
                     <div className='ev-table-data'>
-                        <div className='stat hp'>{hp()}</div>
-                        <div className='ev hp-ev'>{hpEV()}</div>
+                        <div className={` ${pokemonDetails.types[0].type.name} stat hp`}>{hp()}</div>
+                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>{hpEV()}</div>
                     </div>
 
                     <div className='ev-table-data'>
-                        <div className='stat attk'>{attack()}</div>
-                        <div className='ev attk-ev'>{attkEV()}</div>
+                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>{attack()}</div>
+                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>{attkEV()}</div>
                     </div>
 
                     <div className='ev-table-data'>
-                        <div className='stat def'>{defence()}</div>
-                        <div className='ev def-ev'>{defEV()}</div>
+                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>{defence()}</div>
+                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>{defEV()}</div>
                     </div>
 
                     <div className='ev-table-data'>
-                        <div className='stat sp-attk'>{shortenedAttack()}</div>
-                        <div className='ev sp-attk-ev'>{spAttkEV()}</div>
+                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>{shortenedAttack()}</div>
+                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>{spAttkEV()}</div>
                     </div>
 
                     <div className='ev-table-data'>
-                        <div className='stat sp-def'>{shortenedDefence()}</div>
-                        <div className='ev sp-def-ev'>{spDefEV()}</div>
+                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>{shortenedDefence()}</div>
+                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>{spDefEV()}</div>
                     </div>
 
                     <div className='ev-table-data data-last'>
-                        <div className='stat speed'>{speed()}</div>
-                        <div className='ev speed-ev'>{speedEV()}</div>
+                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>{speed()}</div>
+                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>{speedEV()}</div>
                     </div>
                 </div>
             </div>
