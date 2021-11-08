@@ -324,7 +324,6 @@ body {
     font-weight: bold;
     margin: 0 auto;
     margin-top: 20px;
-    border: 1px solid black;
 }
 
 .ev-table-data {
@@ -335,7 +334,6 @@ body {
 }
 
 .stat, .ev {
-    border: 1px solid black;
     padding: 6px;
 }
 
@@ -353,24 +351,48 @@ body {
     padding-right: 15px;
 }
 
+.hp-ev {
+    background-color: rgb(246, 190, 190);
+}
+
 .attk {
     background-color: rgb(255, 191, 73);
+}
+
+.attk-ev {
+    background-color: rgb(255, 230, 183);
 }
 
 .def {
     background-color: rgb(255, 255, 118);
 }
 
+.def-ev {
+    background-color: rgb(255, 255, 218);
+}
+
 .sp-attk {
     background-color: rgb(197, 255, 109);
+}
+
+.sp-attk-ev {
+    background-color: rgb(220, 255, 168);
 }
 
 .sp-def {
     background-color: rgb(57, 119, 200);
 }
 
+.sp-def-ev {
+    background-color: rgb(210, 225, 245);
+}
+
 .speed {
     background-color: rgb(113, 64, 160);
+}
+
+.speed-ev {
+    background-color:rgb(229, 202, 255);
 }
 
 .normal {

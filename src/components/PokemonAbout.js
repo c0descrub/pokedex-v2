@@ -1,5 +1,4 @@
 export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
-    
     const heightConversion = () => {
         let a = (pokemonDetails.height * 10) / 30.48
         return (
@@ -168,32 +167,32 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
                 <div className='ev-table-container'>
                     <div className='ev-table-data'>
                         <div className='stat hp'>{hp()}</div>
-                        <div className='ev'>{hpEV()}</div>
+                        <div className='ev hp-ev'>{hpEV()}</div>
                     </div>
 
                     <div className='ev-table-data'>
                         <div className='stat attk'>{attack()}</div>
-                        <div className='ev'>{attkEV()}</div>
+                        <div className='ev attk-ev'>{attkEV()}</div>
                     </div>
 
                     <div className='ev-table-data'>
                         <div className='stat def'>{defence()}</div>
-                        <div className='ev'>{defEV()}</div>
+                        <div className='ev def-ev'>{defEV()}</div>
                     </div>
 
                     <div className='ev-table-data'>
                         <div className='stat sp-attk'>{shortenedAttack()}</div>
-                        <div className='ev'>{spAttkEV()}</div>
+                        <div className='ev sp-attk-ev'>{spAttkEV()}</div>
                     </div>
 
                     <div className='ev-table-data'>
                         <div className='stat sp-def'>{shortenedDefence()}</div>
-                        <div className='ev'>{spDefEV()}</div>
+                        <div className='ev sp-def-ev'>{spDefEV()}</div>
                     </div>
 
                     <div className='ev-table-data data-last'>
                         <div className='stat speed'>{speed()}</div>
-                        <div className='ev'>{speedEV()}</div>
+                        <div className='ev speed-ev'>{speedEV()}</div>
                     </div>
                 </div>
             </div>
@@ -204,9 +203,62 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
                         fontWeight: 'bold',
                         fontSize: '14px',
                         marginLeft: '3px',
+                        marginBottom: '20px',
                     }}>
                     EV Total: {evTotal()}
                 </p>
+            </div>
+
+            <div className='pokedex-data-container'>
+                <div>
+                    <h3 className='species-data-title' style={{ width: '150px' }}>
+                        Catch Rate:
+                    </h3>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <p className='species-data'>{speciesData.capture_rate}</p>{' '}
+                    <p className='species-data' style={{ fontSize: '12px', marginLeft: '5px' }}>
+                        {' '}
+                        (Regular Pokéball, full HP)
+                    </p>
+                </div>
+            </div>
+            <div className='pokedex-data-container'>
+                <div>
+                    <h3 className='species-data-title' style={{ width: '150px' }}>
+                        Base Friendship:
+                    </h3>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <p className='species-data'>{speciesData.base_happiness}</p>{' '}
+                    <p className='species-data' style={{ fontSize: '12px', marginLeft: '5px' }}>
+                        {' '}
+                        (Normal)
+                    </p>
+                </div>
+            </div>
+            <div className='pokedex-data-container'>
+                <div>
+                    <h3 className='species-data-title' style={{ width: '150px' }}>
+                        Base Experience:
+                    </h3>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <p className='species-data'>{pokemonDetails.base_experience}</p>{' '}
+                </div>
+            </div>
+            <div className='pokedex-data-container'>
+                <div>
+                    <h3 className='species-data-title' style={{ width: '150px' }}>
+                        Growth Rate:
+                    </h3>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <p className='species-data'>
+                        {speciesData.growth_rate.name.charAt(0).toUpperCase() +
+                            speciesData.growth_rate.name.slice(1)}
+                    </p>{' '}
+                </div>
             </div>
         </div>
     )
