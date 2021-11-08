@@ -17,6 +17,30 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
         )
     }
 
+    const determineGender = () => {
+        let gender = speciesData.gender_rate
+        let female = (gender / 8) * 100
+        let male = 100 - female
+
+        if (gender > -1) {
+            return (
+                <div style={{ display: 'flex' }}>
+                    <p style={{ color: '#1981d3', fontWeight: 'bold' }}>{male + '%'}</p>{' '}
+                    <p style={{ color: '#c97cc3', fontWeight: 'bold', marginLeft: '5px' }}>
+                        {female + '%'}
+                    </p>
+                </div>
+            )
+        } else return <p style={{ color: 'var(--text-grey)' }}>Genderless</p>
+    }
+
+    const hatchCounter = () => {
+        let data = speciesData.hatch_counter
+        let counter = 255 * (data + 1)
+
+        return counter
+    }
+
     const evTotal = () => {
         let total =
             pokemonDetails.stats['0'].effort +
@@ -231,10 +255,6 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <p className='species-data'>{speciesData.base_happiness}</p>{' '}
-                    <p className='species-data' style={{ fontSize: '12px', marginLeft: '5px' }}>
-                        {' '}
-                        (Normal)
-                    </p>
                 </div>
             </div>
             <div className='pokedex-data-container'>
@@ -258,6 +278,41 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
                         {speciesData.growth_rate.name.charAt(0).toUpperCase() +
                             speciesData.growth_rate.name.slice(1)}
                     </p>{' '}
+                </div>
+            </div>
+
+            <h2 className={`${pokemonDetails.types[0].type.name}-text`}>Breeding</h2>
+            <div className='pokedex-data-container'>
+                <div>
+                    <h3 className='species-data-title' style={{ width: '150px' }}>
+                        Gender Rate:
+                    </h3>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>{determineGender()}</div>
+            </div>
+            <div className='pokedex-data-container'>
+                <div>
+                    <h3 className='species-data-title' style={{ width: '150px' }}>
+                        Egg Groups:
+                    </h3>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <p className='species-data'>
+                        {speciesData.egg_groups['0'].name.charAt(0).toUpperCase() +
+                            speciesData.egg_groups['0'].name.slice(1)}
+                    </p>
+                </div>
+            </div>
+            <div className='pokedex-data-container'>
+                <div>
+                    <h3 className='species-data-title' style={{ width: '150px' }}>
+                        Egg Cycles:
+                    </h3>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <p className='species-data'>
+                    {speciesData.hatch_counter} <span className="hidden-ability">({hatchCounter()} steps</span>)
+                    </p>
                 </div>
             </div>
         </div>
