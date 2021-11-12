@@ -12,12 +12,12 @@ const getPokemonData = (id) => {
         try {
             const details = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
             const species = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
-            const evolution = await axios.get(`https://pokeapi.co/api/v2/evolution-chain/${id}`)
+            // const evolution = await axios.get(`https://pokeapi.co/api/v2/evolution-chain/${id}`)
 
             resolve({
                 details,
                 species,
-                evolution,
+                // evolution,
             })
         } catch (e) {
             reject(e)
@@ -80,7 +80,7 @@ const PokemonPage = ({ match }) => {
         getPokemonData(id).then((res) => {
             setPokemonDetails(res.details.data)
             setSpeciesData(res.species.data)
-            setEvoloutionData(res.evolution.data)
+            // setEvoloutionData(res.evolution.data)
             setLoading(false)
         })
     }, [id])
