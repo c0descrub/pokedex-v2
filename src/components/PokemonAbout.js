@@ -16,7 +16,6 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
             </p>
         )
     }
-
     const determineGender = () => {
         let gender = speciesData.gender_rate
         let female = (gender / 8) * 100
@@ -152,6 +151,10 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
         let lastEnglishEntry = englishEntries.length - 1
 
         return englishEntries[lastEnglishEntry].flavor_text
+    }
+
+    const weaknesses = () => {
+        let type = pokemonDetails.types[0].type.name
     }
 
     return (
