@@ -34,6 +34,20 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
         } else return <p style={{ color: 'var(--text-grey)' }}>Genderless</p>
     }
 
+    const eggGroups = () => {
+        let eggArray = speciesData.egg_groups
+
+        if (eggArray.length === 0) {
+            return <p className='species-data'>N/a</p>
+        } else
+            return (
+                <p className='species-data'>
+                    {speciesData.egg_groups['0'].name.charAt(0).toUpperCase() +
+                        speciesData.egg_groups['0'].name.slice(1)}
+                </p>
+            )
+    }
+
     const hatchCounter = () => {
         let data = speciesData.hatch_counter
         let counter = 255 * (data + 1)
@@ -129,9 +143,21 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
         return speed
     }
 
+    const flavorText = () => {
+        let entriesArray = speciesData.flavor_text_entries
+        let englishEntries = entriesArray.filter((entry) => {
+            return entry.language.name === 'en'
+        })
+
+        let lastEnglishEntry = englishEntries.length - 1
+
+        return englishEntries[lastEnglishEntry].flavor_text
+    }
+
     return (
         <div id='tab-1' className='tab-content current-tab'>
-            <p className='tab-content-text'>{speciesData.flavor_text_entries['15'].flavor_text}</p>
+            <p className='tab-content-text'>{flavorText()}</p>
+
             <h2 className={`${pokemonDetails.types[0].type.name}-text`}>Pokédex Data</h2>
             <div className='pokedex-data-container'>
                 <div>
@@ -167,8 +193,8 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
                     <h3 className='species-data-title'>Abilities:</h3>
                 </div>
                 <div>
-                    {pokemonDetails.abilities.map((a) => (
-                        <div>
+                    {pokemonDetails.abilities.map((a, pos) => (
+                        <div key={pos}>
                             {a.is_hidden === true ? (
                                 <p className='hidden-ability species-data'>
                                     {a.ability.name.charAt(0).toUpperCase() +
@@ -190,33 +216,57 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
             <div className='pokedex-data-container ev-table'>
                 <div className='ev-table-container'>
                     <div className='ev-table-data'>
-                        <div className={` ${pokemonDetails.types[0].type.name} stat hp`}>{hp()}</div>
-                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>{hpEV()}</div>
+                        <div className={` ${pokemonDetails.types[0].type.name} stat hp`}>
+                            {hp()}
+                        </div>
+                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>
+                            {hpEV()}
+                        </div>
                     </div>
 
                     <div className='ev-table-data'>
-                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>{attack()}</div>
-                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>{attkEV()}</div>
+                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>
+                            {attack()}
+                        </div>
+                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>
+                            {attkEV()}
+                        </div>
                     </div>
 
                     <div className='ev-table-data'>
-                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>{defence()}</div>
-                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>{defEV()}</div>
+                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>
+                            {defence()}
+                        </div>
+                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>
+                            {defEV()}
+                        </div>
                     </div>
 
                     <div className='ev-table-data'>
-                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>{shortenedAttack()}</div>
-                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>{spAttkEV()}</div>
+                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>
+                            {shortenedAttack()}
+                        </div>
+                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>
+                            {spAttkEV()}
+                        </div>
                     </div>
 
                     <div className='ev-table-data'>
-                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>{shortenedDefence()}</div>
-                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>{spDefEV()}</div>
+                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>
+                            {shortenedDefence()}
+                        </div>
+                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>
+                            {spDefEV()}
+                        </div>
                     </div>
 
                     <div className='ev-table-data data-last'>
-                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>{speed()}</div>
-                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>{speedEV()}</div>
+                        <div className={` ${pokemonDetails.types[0].type.name} stat`}>
+                            {speed()}
+                        </div>
+                        <div className={`background-${pokemonDetails.types[0].type.name} ev`}>
+                            {speedEV()}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -296,12 +346,7 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
                         Egg Groups:
                     </h3>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <p className='species-data'>
-                        {speciesData.egg_groups['0'].name.charAt(0).toUpperCase() +
-                            speciesData.egg_groups['0'].name.slice(1)}
-                    </p>
-                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>{eggGroups()}</div>
             </div>
             <div className='pokedex-data-container'>
                 <div>
@@ -311,7 +356,8 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <p className='species-data'>
-                    {speciesData.hatch_counter} <span className="hidden-ability">({hatchCounter()} steps</span>)
+                        {speciesData.hatch_counter}{' '}
+                        <span className='hidden-ability'>({hatchCounter()} steps</span>)
                     </p>
                 </div>
             </div>
