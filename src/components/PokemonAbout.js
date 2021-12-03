@@ -152,11 +152,7 @@ export const PokemonAbout = ({ speciesData, pokemonDetails }) => {
 
         return englishEntries[lastEnglishEntry].flavor_text
     }
-
-    const weaknesses = () => {
-        let type = pokemonDetails.types[0].type.name
-    }
-
+    
     return (
         <div id='tab-1' className='tab-content current-tab'>
             <p className='tab-content-text'>{flavorText()}</p>
