@@ -7,11 +7,13 @@ import Loader from '../components/Loader'
 const Homepage = () => {
     const [pokemon, setPokemon] = useState([])
     const [loading, setLoading] = useState(true)
-
+    const [filteredArray, setFilteredArray] = useState([])
+    
+    
     useEffect(() => {
         const getPokemonList = async () => {
             let pokemonArray = []
-            for (let i = 1; i <= 151; i++) {
+            for (let i = 1; i <= 898; i++) {
                 pokemonArray.push(await getPokemonData(i))
             }
             setPokemon(pokemonArray)
@@ -25,19 +27,47 @@ const Homepage = () => {
         getPokemonList()
     }, [])
 
+const searchLogic = () => {
+    const searchBar = document.getElementById('mainSearchBar')
+    searchBar.addEventListener("keyup", function(e) {
+        console.log(e.target.value)
+        let filtered = pokemon.filter((p) => {
+            if (p.data.name.toLowerCase().includes(e.target.value.toLowerCase())) {
+                return p
+            } else return ""
+        })
+
+        setFilteredArray(filtered)
+
+        if (e.target.value === "") {
+            setFilteredArray([])
+        }
+
+    })
+}
+
+console.log(filteredArray)
+
+
+
+    
     return (
-        <>
-            {loading ? (
-                <Loader />
-            ) : (
-                <Row>
-                    {pokemon.map((p) => (
-                        <Col xs={12} sm={12} md={6} lg={4} xl={4} key={p.data.name}>
-                            {' '}
-                            <Pokemon pokemon={p.data} />{' '}
-                        </Col>
-                    ))}
-                </Row>
+        <>{loading ? (
+            <Loader />
+        ):(
+                <div className='search-bar-wrapper'>
+                    <input type='text' name='search bar' id='mainSearchBar' placeholder='Search for a Pokémon...' onChange={searchLogic}></input>
+                    {filteredArray.length ? <div id='searchResults'>
+                            {filteredArray.map((p) => (
+                                <div key={p.data.name}>
+                                {' '}
+                                    <Pokemon pokemon={p.data} />{' '}
+                                </div>
+                            ))}
+ 
+
+                    </div> : ""}
+                </div>
             )}
         </>
     )
