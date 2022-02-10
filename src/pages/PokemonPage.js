@@ -16,7 +16,6 @@ const getPokemonData = (id) => {
             resolve({
                 details,
                 species,
-                
             })
         } catch (e) {
             reject(e)

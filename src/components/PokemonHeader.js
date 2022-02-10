@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export const PokemonHeader = ({ pokemonDetails, toggleTab }) => {
     return (
         <>
@@ -7,6 +9,17 @@ export const PokemonHeader = ({ pokemonDetails, toggleTab }) => {
                     backgroundImage: `url("/img/svg/${pokemonDetails.types[0].type.name}-bg.svg")`,
                     backgroundSize: '100px',
                 }}>
+                <Link
+                    to={`/`}
+                    style={{
+                        position: 'absolute',
+                        top: '15px',
+                        left: '15px',
+                        cursor: 'pointer',
+                        color: 'white',
+                    }}>
+                    <i class='fa-solid fa-arrow-left'></i>
+                </Link>
                 <div className='pokemon-page-header__details'>
                     <img
                         className='pokemon-page-header__image pokemon-image'
