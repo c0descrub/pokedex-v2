@@ -18,7 +18,7 @@ export const PokemonHeader = ({ pokemonDetails, toggleTab }) => {
                         cursor: 'pointer',
                         color: 'white',
                     }}>
-                    <i class='fa-solid fa-arrow-left'></i>
+                    <i className='fa-solid fa-arrow-left'></i>
                 </Link>
                 <div className='pokemon-page-header__details'>
                     <img

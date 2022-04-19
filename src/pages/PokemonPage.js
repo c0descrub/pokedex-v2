@@ -95,7 +95,7 @@ const PokemonPage = ({ match }) => {
 
                         <PokemonStats pokemonDetails={pokemonDetails} toggleTab={toggleTab} />
 
-                        <PokemonEvolutions />
+                        <PokemonEvolutions pokemonDetails={pokemonDetails} toggletab={toggleTab} />
                     </Row>
                 </>
             )}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Pokemon from '../components/Pokemon'
 import Loader from '../components/Loader'
@@ -29,8 +30,9 @@ const Homepage = () => {
 
     const searchLogic = () => {
         const searchBar = document.getElementById('mainSearchBar')
+        const button = document.getElementById('loadAll')
         searchBar.addEventListener('keyup', function (e) {
-            console.log(e.target.value)
+            button.classList.add('hidden')
             let filtered = pokemon.filter((p) => {
                 if (p.data.name.toLowerCase().includes(e.target.value.toLowerCase())) {
                     return p
@@ -40,19 +42,27 @@ const Homepage = () => {
             setFilteredArray(filtered)
 
             if (e.target.value === '') {
+                button.classList.remove('hidden')
                 setFilteredArray([])
             }
         })
     }
 
     console.log(filteredArray)
+    console.log(pokemon)
 
     return (
         <>
             {loading ? (
                 <Loader />
             ) : (
-                <Container style={{ marginTop: '300px' }}>
+                <Container
+                    style={{
+                        marginTop: '300px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        flexDirection: 'column',
+                    }}>
                     <h1 style={{ textAlign: 'center' }}>React Pokédex!</h1>
                     <div className='search-bar-wrapper'>
                         <input
@@ -75,6 +85,13 @@ const Homepage = () => {
                             ''
                         )}
                     </div>
+                    <Link to={`/allpokemon`} pokemon={pokemon}>
+                        <input
+                            id='loadAll'
+                            type='button'
+                            value="Catch 'em all"
+                            style={{ marginTop: '40px' }}></input>
+                    </Link>
                 </Container>
             )}
         </>
