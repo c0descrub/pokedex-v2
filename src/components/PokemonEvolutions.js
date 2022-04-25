@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
-const RenderChain = ({ pokemonChain, current }) => {
-    console.log({ pokemonChain, current })
+const RenderChain = ({ pokemonChain, current, sprite }) => {
     if (!pokemonChain || !current) return null
     const isCurrent = pokemonChain?.species?.name.toLowerCase() === current.toLowerCase()
     return (
         <div>
+            <img
+                src={sprite.sprites.other['official-artwork'].front_default}
+                alt={pokemonChain.species.name}
+            />
             <div
                 style={{
                     fontWeight: isCurrent ? 'bold' : 'normal',
                 }}>
-                {pokemonChain.species.name}
+                <Link to={`${pokemonChain.species.name}`}>{pokemonChain.species.name}</Link>
             </div>
             {pokemonChain.evolves_to.length > 0
                 ? pokemonChain.evolves_to.map((pokemon) => {
@@ -27,8 +31,7 @@ const RenderChain = ({ pokemonChain, current }) => {
     )
 }
 
-export const PokemonEvolutions = ({ pokemonDetails, evolutionData, toggleTab }) => {
-    console.log(pokemonDetails.name)
+export const PokemonEvolutions = ({ pokemonDetails }) => {
     const [evoChain, setEvoChain] = useState(false)
     useEffect(() => {
         const test = async () => {
@@ -39,11 +42,15 @@ export const PokemonEvolutions = ({ pokemonDetails, evolutionData, toggleTab }) 
             setEvoChain(evoChainData)
         }
         test()
-    }, [])
+    }, [pokemonDetails.species.url])
     return (
         <div id='tab-3' className='tab-content tab'>
             {evoChain !== false ? (
-                <RenderChain pokemonChain={evoChain.chain} current={pokemonDetails.name} />
+                <RenderChain
+                    pokemonChain={evoChain.chain}
+                    current={pokemonDetails.name}
+                    sprite={pokemonDetails.sprites}
+                />
             ) : null}
         </div>
     )
