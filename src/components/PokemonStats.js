@@ -1,11 +1,11 @@
 export const PokemonStats = ({ pokemonDetails, toggleTab }) => {
     return (
         <div id='tab-2' className='tab-content tab' onClick={() => toggleTab(1)}>
-            <div className='center-container'>
+            <div className='center-container__stats'>
                 {pokemonDetails.stats.map((s) => (
                     <div
                         className='stats-container'
-                        style={{ width: '50%', margin: '0 auto', marginBottom: '10px' }}
+                        // style={{ width: '50%', margin: '0 auto', marginBottom: '10px' }}
                         key={s.stat.name}>
                         <p className='stats-stat-name'>{s.stat.name.toUpperCase()}</p>
                         <div className='stats-stat-max'>
