@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const RenderChain = ({ pokemonChain, current, sprite }) => {
-    if (!pokemonChain || !current) return null
+const RenderChain = ({ pokemonChain, current, pokemonDetails }) => {
+    if (!pokemonChain || !current || !pokemonDetails) return null
     const isCurrent = pokemonChain?.species?.name.toLowerCase() === current.toLowerCase()
+    console.log(pokemonDetails)
     return (
         <div>
             <img
-                src={sprite.sprites.other['official-artwork'].front_default}
-                alt={pokemonChain.species.name}
+                src={pokemonDetails.sprites.other['official-artwork'].front_default}
+                alt={pokemonDetails.name}
             />
             <div
                 style={{
@@ -23,6 +24,7 @@ const RenderChain = ({ pokemonChain, current, sprite }) => {
                               key={pokemon.species.name}
                               pokemonChain={pokemon}
                               current={current}
+                              pokemonDetails={pokemonDetails}
                           />
                       )
                   })
@@ -42,14 +44,14 @@ export const PokemonEvolutions = ({ pokemonDetails }) => {
             setEvoChain(evoChainData)
         }
         test()
-    }, [pokemonDetails.species.url])
+    }, [])
     return (
         <div id='tab-3' className='tab-content tab'>
             {evoChain !== false ? (
                 <RenderChain
                     pokemonChain={evoChain.chain}
                     current={pokemonDetails.name}
-                    sprite={pokemonDetails.sprites}
+                    pokemonDetails={pokemonDetails}
                 />
             ) : null}
         </div>
