@@ -16,7 +16,9 @@ const Loader = () => {
             </Row>
             <Row>
                 <Col>
-                    <div style={{ fontSize: '28px', marginLeft: '25px' }}>Catching Pokémon...</div>
+                    <div style={{ fontSize: '28px', marginLeft: '25px' }}>
+                        Populating Pokédex...
+                    </div>
                 </Col>
             </Row>
         </div>

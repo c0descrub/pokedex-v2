@@ -105,6 +105,16 @@ body {
     overflow-x: hidden;
 }
 
+@media(max-width: 480px){
+    .search-bar-wrapper {
+        width: 100%;
+    }
+    .mainSearchBar {
+        width: 100%;
+    }
+}
+
+
 .mainSearchBar {
     border-radius: 10px;
     width: 90%;
