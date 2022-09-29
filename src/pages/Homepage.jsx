@@ -85,9 +85,11 @@ const Homepage = () => {
                             ''
                         )}
                     </div>
+                    <p style={{ marginTop: '50px' }}>Or</p>
                     <Link to={`/allpokemon`} pokemon={pokemon}>
                         <input
                             id='loadAll'
+                            className='all-pokemon-button'
                             type='button'
                             value="Catch 'em all"
                             style={{ marginTop: '40px' }}></input>

@@ -105,13 +105,28 @@ body {
     overflow-x: hidden;
 }
 
-@media(max-width: 480px){
+@media(max-width: 780px){
+
     .search-bar-wrapper {
         width: 100%;
     }
     .mainSearchBar {
         width: 100%;
     }
+}
+
+.all-pokemon-button {
+    background-color: rgb(185, 56, 56);
+    padding: 15px 30px 15px 30px;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+}
+
+.all-pokemon-button:hover {
+    background-color: rgb(135, 31, 31) ;
+    transition: ease-in-out .2s;
 }
 
 
