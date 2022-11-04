@@ -163,6 +163,7 @@ body {
     font-weight: var(--pokemon-name-weight);
     color: var(--text-white);
     margin-bottom: 0;
+    text-transform: capitalize;
 }
 
 .pokemon-image {
@@ -549,6 +550,10 @@ body {
 }
 .fairy {
     background-color: var(--fairy-type);
+}
+
+.background-loading {
+    background-color: red;
 }
 
 .background-normal {
