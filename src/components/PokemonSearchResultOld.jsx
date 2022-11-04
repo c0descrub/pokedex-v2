@@ -1,45 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useInView } from 'react-intersection-observer'
+import { useQuery } from '@tanstack/react-query'
+
+const getPokemon = async (pokemonName) => {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`)
+    const { types, sprites } = await res.json()
+
+    return {
+        types: types.map((t) => t.type.name),
+        sprite: sprites.other['official-artwork'].front_default,
+    }
+}
 
 export const PokemonSearchResult = ({ pokemonName, id }) => {
-    const [isLoading, setIsLoading] = useState(true)
-    const [pokemon, setPokemon] = useState(
-        window.localStorage.getItem(`savedPokemon:${pokemonName}`)
-            ? JSON.parse(window.localStorage.getItem(`savedPokemon:${pokemonName}`))
-            : null,
-    )
     const { ref, inView } = useInView()
-
-    useEffect(() => {
-        if (pokemon !== null) {
-            setIsLoading(false)
-            return
-        }
-        if (inView) {
-            const getPokemon = async () => {
-                const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`)
-                const { types, sprites } = await res.json()
-                const pokemonToSave = {
-                    types: types.map((t) => t.type.name),
-                    sprite: sprites.other['official-artwork'].front_default,
-                }
-                setPokemon(pokemonToSave)
-                window.localStorage.setItem(
-                    `savedPokemon:${pokemonName}`,
-                    JSON.stringify(pokemonToSave),
-                )
-                setIsLoading(false)
-            }
-            getPokemon()
-        }
-    }, [pokemonName, pokemon, inView])
+    const { data: pokemon, isLoading } = useQuery([pokemonName], () => getPokemon(pokemonName), {
+        enabled: inView,
+    })
 
     return (
         <Link ref={ref} to={`/pokemon/${id}`} style={{ textDecoration: 'none' }}>
             <div
                 className={`homepage-pokemon-card background-${
-                    isLoading ? 'loading' : pokemon.types[0]
+                    isLoading ? 'loading' : pokemon?.types[0]
                 }`}>
                 <div>
                     <h3 className='homepage-pokemon-card__id pokemon-id'>#{id}</h3>
@@ -48,7 +32,7 @@ export const PokemonSearchResult = ({ pokemonName, id }) => {
                     <div className='type-container'>
                         {isLoading
                             ? null
-                            : pokemon.types.map((t) => (
+                            : pokemon?.types.map((t) => (
                                   <div key={t} className={`homepage-pokemon-card__type ${t}`}>
                                       <img
                                           alt={`${t} type icon`}
@@ -64,7 +48,7 @@ export const PokemonSearchResult = ({ pokemonName, id }) => {
                 <img
                     className='homepage-pokemon-card__image pokemon-image'
                     alt={pokemonName}
-                    src={!isLoading && inView ? pokemon.sprite : null}
+                    src={!isLoading && inView ? pokemon?.sprite : null}
                 />
             </div>
         </Link>
